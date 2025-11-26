@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Multi Stage Comparator</title>
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<main>
+			<article>
+				<section class="intro">
+					<h1 class="h1-1000">CSS Scroll Driven Multi Stage Comparator</h1>
+
+					<p>A multi-stage image comparator driven by scroll position using CSS<code>scroll-timeline</code> and <code>animation-range</code>. The system uses <code>sibling-index()</code> and <code>sibling-count()</code> to calculate layer timing and stacking order automatically add or remove image layers and the CSS recalculates z-index, clip-path windows and divider synchronization without manual class numbering.</p>
+
+					<p>The percentage counter is calculated in CSS using <code>@property</code> with scroll-driven animations. JavaScript measures positioning to calculate scroll offsets for each comparator and formats the percentage display with leading zeros.</p>
+
+					<p class="scroll-indicator">Scroll down ↓</p>
+				</section>
+
+				<section class="scroll-section">
+					<div class="comparator-container">
+						<div class="comparator-wrapper">
+							<div class="comparator">
+								<div class="comparison-percentage"></div>
+
+								<div class="image-layers">
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-01-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-01-1024x768.webp" decoding="async" fetchpriority="high" alt="Stage 1" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 1</span>
+
+											<div class="image-text">
+												<h2>Quiet Stone</h2>
+
+												<h3>— Heat and stillness</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-02-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-02-1024x768.webp" decoding="async" fetchpriority="high" alt="Stage 2" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 2</span>
+
+											<div class="image-text">
+												<h2>Storm Break</h2>
+
+												<h3>— Cracks under pressure</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-03-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-03-1024x768.webp" decoding="async" fetchpriority="high" alt="Stage 3" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 3</span>
+
+											<div class="image-text">
+												<h2>Snow Keep</h2>
+
+												<h3>— Silence taking over</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-04-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-04-1024x768.webp" decoding="async" fetchpriority="high" alt="Stage 4" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 4</span>
+
+											<div class="image-text">
+												<h2>Root Hold</h2>
+
+												<h3>— Time growing back</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="divider-lines">
+									<div class="divider-line"></div>
+
+									<div class="divider-line"></div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<p class="scroll-indicator">Scroll down ↓</p>
+				</section>
+
+				<section class="scroll-section">
+					<div class="comparator-container">
+						<div class="comparator-wrapper flip-reverse">
+							<div class="comparator">
+								<div class="comparison-percentage"></div>
+
+								<div class="image-layers">
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-05-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-05-1024x768.webp" decoding="async" loading="lazy" alt="Stage 1" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 1</span>
+
+											<div class="image-text">
+												<h2>Sun House</h2>
+
+												<h3>— Quiet heat</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-06-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-06-1024x768.webp" decoding="async" loading="lazy" alt="Stage 2" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 2</span>
+
+											<div class="image-text">
+												<h2>Rain Siege</h2>
+
+												<h3>— Rough weather</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-07-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-07-1024x768.webp" decoding="async" loading="lazy" alt="Stage 3" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 3</span>
+
+											<div class="image-text">
+												<h2>Fault Line</h2>
+
+												<h3>— Breaking point</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="image-layer">
+										<picture>
+											<source media="(max-width: 48em)" srcset="https://assets.codepen.io/573855/lr-scroll-img-08-820x1093.webp" />
+
+											<img src="https://assets.codepen.io/573855/lr-scroll-img-08-1024x768.webp" decoding="async" loading="lazy" alt="Stage 4" />
+										</picture>
+
+										<div class="comparator-overlay">
+											<span class="label">Stage 4</span>
+
+											<div class="image-text">
+												<h2>White Surge</h2>
+
+												<h3>— Carried away</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="divider-lines">
+									<div class="divider-line"></div>
+
+									<div class="divider-line"></div>
+
+									<div class="divider-line"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="outro">
+					<p class="scroll-indicator">Scroll up ↑</p>
+				</section>
+			</article>
+		</main>
+
+		<script src="main.js"></script>
+	</body>
+</html>

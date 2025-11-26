@@ -1,0 +1,494 @@
+@property --scroll-progress {
+  inherits: true;
+  initial-value: 0;
+  syntax: "<number>";
+}
+
+@property --layer-index {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --layer-count {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --divider-index {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --divider-count {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@layer reset,
+base,
+typography,
+comparator,
+links;
+
+@layer reset {
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-y: scroll;
+  }
+}
+
+@layer base {
+  :root {
+    --color-light: #fafafa;
+    --color-dark: #1f1408;
+    --color-light-lighter: color-mix(in oklch, var(--color-light), #fff 10%);
+    --color-light-darker: color-mix(in oklch, var(--color-light), #000 10%);
+    --color-dark-lighter: color-mix(in oklch, var(--color-dark), #fff 10%);
+    --color-dark-darker: color-mix(in oklch, var(--color-dark), #000 10%);
+    --color-bg: var(--color-light);
+    --color-bg-alt: var(--color-light-darker);
+    --color-text: var(--color-dark);
+    --color-text-muted: var(--color-dark-lighter);
+    --color-accent: color-mix(in oklch, var(--color-dark), #fff 60%);
+    --support-message-bg: var(--color-dark-darker);
+    --support-message-text: var(--color-light-lighter);
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-xxl: 3rem;
+    --line-tight: 1.2;
+    --line-base: 1.5;
+    --line-loose: 1.75;
+    --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+      Noto Sans, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Monaco,
+      Consolas, monospace;
+    --ts-xxs: clamp(0.75rem, -4cqw + 0.35rem, 0.9rem);
+    --ts-xs: clamp(0.81rem, -3cqw + 0.35rem, 1.035rem);
+    --ts-sm: clamp(0.9113rem, -1.5cqw + 0.35rem, 1.1644rem);
+    --ts-base: clamp(1.0125rem, 0cqw + 0.35rem, 1.2938rem);
+    --ts-md: clamp(1.1391rem, 1.5cqw + 0.35rem, 1.4555rem);
+    --ts-lg: clamp(1.2656rem, 3cqw + 0.35rem, 1.6172rem);
+    --ts-xl: clamp(1.582rem, 6cqw + 0.35rem, 2.0215rem);
+    --ts-xxl: clamp(1.9775rem, 9cqw + 0.35rem, 2.5269rem);
+    --ts-xxxl: clamp(2.4719rem, 12cqw + 0.35rem, 3.1586rem);
+    --comparator-duration: 400vh;
+    --comparator-offset: 35vh;
+    --comparator-max-width: 56.25rem;
+    --comparator-max-height: 100vh;
+    --comparator-aspect-ratio: 4/3;
+    --layer-count: 1;
+    --layer-index: 1;
+    --divider-count: 1;
+    --divider-index: 1;
+    --layer-start: 0;
+    --layer-end: 1;
+    accent-color: var(--color-accent);
+  }
+
+  @media (max-width: 48em) {
+    :root {
+      --comparator-aspect-ratio: 3/4;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: var(--color-dark);
+      --color-bg-alt: var(--color-dark-lighter);
+      --color-text: var(--color-light);
+      --color-text-muted: var(--color-light-darker);
+      --color-accent: color-mix(in oklch, var(--color-dark), #fff 75%);
+      --support-message-bg: var(--color-light-darker);
+      --support-message-text: var(--color-dark-lighter);
+    }
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  body {
+    background: linear-gradient(to bottom, var(--color-bg), color-mix(in oklch, var(--color-bg), var(--color-text) 20%));
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--ts-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: var(--line-base);
+    min-block-size: 100vh;
+    padding-block-start: var(--space-xl);
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer typography {
+  :where(section, article)>*+* {
+    margin-block-start: var(--space-lg);
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: var(--line-tight);
+  }
+
+  h1 {
+    font-size: var(--ts-xxxl);
+    letter-spacing: -0.03em;
+    margin-block-end: var(--space-lg);
+  }
+
+  p {
+    hyphens: auto;
+    line-height: var(--line-loose);
+    text-wrap: pretty;
+    word-wrap: break-word;
+  }
+
+  code {
+    background: var(--color-bg-alt);
+    border-radius: 0.25em;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.125em 0.25em;
+  }
+
+  a {
+    color: var(--color-accent);
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  small {
+    font-size: var(--ts-sm);
+  }
+}
+
+@layer comparator {
+  @supports not ((animation-timeline: scroll()) and (z-index: sibling-count())) {
+    .intro::before {
+      background: var(--support-message-bg);
+      border-radius: 0.5rem;
+      color: var(--support-message-text);
+      content: "Your browser doesn't support the advanced CSS features required for this interactive layout. Please use the latest Chrome.";
+      display: block;
+      font-size: var(--ts-base);
+      font-weight: 600;
+      margin-block: var(--space-xl);
+      padding: var(--space-md);
+      position: relative;
+    }
+  }
+
+  .intro {
+    display: block;
+    inline-size: calc(100% - var(--space-xl));
+    margin: 0 auto;
+    max-inline-size: 56.25rem;
+    padding-block-end: var(--space-xxl);
+    position: relative;
+  }
+
+  .scroll-section {
+    block-size: calc(var(--comparator-duration) + 100vh);
+    position: relative;
+  }
+
+  .comparator-container {
+    align-items: center;
+    block-size: 100vh;
+    display: flex;
+    inset-block-start: 0;
+    justify-content: center;
+    overflow: hidden;
+    position: sticky;
+  }
+
+  .comparator-wrapper {
+    animation: comparator-3d-flip linear both;
+    animation-range: calc(var(--comparator-offset) - 50vh) calc(var(--comparator-offset) + var(--comparator-duration) + 50vh);
+    animation-timeline: scroll(root);
+    aspect-ratio: var(--comparator-aspect-ratio);
+    border-radius: 0.5rem;
+    inline-size: 100%;
+    margin-inline: var(--space-md);
+    max-block-size: var(--comparator-max-height);
+    max-inline-size: var(--comparator-max-width);
+    overflow: hidden;
+    position: relative;
+  }
+
+  @keyframes comparator-3d-flip {
+    0% {
+      opacity: 0.75;
+      transform: perspective(1200px) rotateX(10deg) rotateY(-10deg) rotateZ(-3deg) scale(0.85);
+    }
+
+    15%,
+    85% {
+      opacity: 1;
+      transform: perspective(1200px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+    }
+
+    100% {
+      opacity: 0.75;
+      transform: perspective(1200px) rotateX(-10deg) rotateY(10deg) rotateZ(3deg) scale(0.85);
+    }
+  }
+
+  .comparator-wrapper.flip-reverse {
+    animation-name: comparator-3d-flip-reverse;
+  }
+
+  @keyframes comparator-3d-flip-reverse {
+    0% {
+      opacity: 0.75;
+      transform: perspective(1200px) rotateX(-10deg) rotateY(10deg) rotateZ(3deg) scale(0.85);
+    }
+
+    15%,
+    85% {
+      opacity: 1;
+      transform: perspective(1200px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+    }
+
+    100% {
+      opacity: 0.75;
+      transform: perspective(1200px) rotateX(10deg) rotateY(-10deg) rotateZ(-3deg) scale(0.85);
+    }
+  }
+
+  .comparator {
+    animation: progress-calc linear both;
+    animation-range: var(--comparator-offset) calc(var(--comparator-offset) + var(--comparator-duration));
+    animation-timeline: scroll(root);
+    block-size: 100%;
+    display: grid;
+    inline-size: 100%;
+    position: relative;
+  }
+
+  @keyframes progress-calc {
+    from {
+      --scroll-progress: 0;
+    }
+
+    to {
+      --scroll-progress: 100;
+    }
+  }
+
+  .image-layers,
+  .divider-lines {
+    grid-area: 1 / -1;
+    display: grid;
+    position: relative;
+  }
+
+  .image-layer {
+    display: grid;
+    grid-area: 1 / -1;
+    position: relative;
+
+    --layer-index: sibling-index();
+    --layer-count: sibling-count();
+
+    z-index: calc(var(--layer-count) - var(--layer-index) + 1);
+  }
+
+  .image-layer:not(:last-child) {
+    --layer-start: calc((var(--layer-index) - 1) / (var(--layer-count) - 1));
+    --layer-end: calc(var(--layer-index) / (var(--layer-count) - 1));
+
+    animation: clip-reveal linear both;
+    animation-timeline: scroll(root);
+    animation-range: calc(var(--comparator-offset) + (var(--comparator-duration) * var(--layer-start))) calc(var(--comparator-offset) + (var(--comparator-duration) * var(--layer-end)));
+  }
+
+  @keyframes clip-reveal {
+    from {
+      clip-path: inset(0 0 0 0);
+    }
+
+    to {
+      clip-path: inset(0 100% 0 0);
+    }
+  }
+
+  picture {
+    grid-area: 1 / -1;
+    max-block-size: var(--comparator-max-height);
+    inline-size: 100%;
+    block-size: 100%;
+    display: block;
+  }
+
+  .image-layer img {
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: var(--comparator-aspect-ratio);
+    background: color-mix(in oklch, var(--color-bg), var(--color-text) 5%);
+  }
+
+  .divider-line {
+    background: transparent;
+    block-size: 100%;
+    border-inline-start: thin solid var(--color-bg);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent), transparent 50%);
+    grid-area: 1 / -1;
+    inline-size: 1px;
+    pointer-events: none;
+    position: relative;
+    --divider-index: sibling-index();
+    --divider-count: sibling-count();
+    z-index: calc(20 - var(--divider-index));
+    --layer-start: calc((var(--divider-index) - 1) / var(--divider-count));
+    --layer-end: calc(var(--divider-index) / var(--divider-count));
+    animation: divider-move linear both;
+    animation-timeline: scroll(root);
+    animation-range: calc(var(--comparator-offset) + (var(--comparator-duration) * var(--layer-start))) calc(var(--comparator-offset) + (var(--comparator-duration) * var(--layer-end)));
+  }
+
+  @keyframes divider-move {
+    0% {
+      inset-inline-start: 100%;
+      opacity: 0;
+    }
+
+    2% {
+      opacity: 1;
+    }
+
+    98% {
+      opacity: 1;
+    }
+
+    100% {
+      inset-inline-start: 0%;
+      opacity: 0;
+    }
+  }
+
+  .comparator-overlay {
+    block-size: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / -1;
+    inline-size: 100%;
+    max-block-size: var(--comparator-max-height);
+    position: relative;
+    transform: translateZ(30px);
+  }
+
+  .label {
+    backdrop-filter: blur(0.375rem);
+    background: color-mix(in srgb, var(--color-dark), transparent 20%);
+    border-radius: 1rem;
+    color: var(--color-light);
+    font-size: var(--ts-xxs);
+    font-weight: 600;
+    inline-size: fit-content;
+    letter-spacing: 0.05em;
+    margin-block: var(--space-md) auto;
+    margin-inline: var(--space-md) auto;
+    padding: 0.375rem 0.75rem;
+    pointer-events: none;
+    position: relative;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 11;
+  }
+
+  .image-text {
+    animation: text-reveal 0.6s ease-out both;
+    animation-range: var(--comparator-offset) calc(var(--comparator-offset) + 20vh);
+    animation-timeline: scroll(root);
+    margin-block: auto var(--space-md);
+    margin-inline: var(--space-md) auto;
+    pointer-events: none;
+    position: relative;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  @keyframes text-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .comparison-percentage {
+    color: var(--color-light-lighter);
+    bottom: var(--space-md);
+    font-size: var(--ts-md);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    line-height: 1.4;
+    pointer-events: none;
+    position: absolute;
+    right: var(--space-md);
+    z-index: 20;
+  }
+
+  .image-text h2 {
+    font-size: var(--ts-lg);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--color-light-lighter);
+  }
+
+  .image-text h3 {
+    font-size: var(--ts-md);
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--color-light);
+  }
+
+  .outro {
+    align-items: center;
+    block-size: 50vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .scroll-indicator {
+    font-size: var(--ts-xl);
+    max-inline-size: 100%;
+    text-align: center;
+  }
+}
+
+.h1-1000 {
+  width: 1000px;
+}
